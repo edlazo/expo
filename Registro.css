@@ -1,0 +1,174 @@
+body{
+    background-color: #0F0745;
+}
+
+
+    H1{
+        margin: 0;
+        color: white;
+        font-size: 45px;
+        text-align: center;
+        font-family: arial;
+        font-style: italic;
+
+}
+.formulario{
+    position: absolute;
+    top:60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color:#0F0745 ;
+    border-radius: 10px;
+    border: 40px;
+    border-color: white;
+
+   
+}
+.formulario h2{
+    text-align: left;
+    font-family: arial;
+    font-size: 25PX;
+    font-style: normal;
+    left: 50%;
+    padding: 0 0 5px 0;
+    color: white;
+}
+
+
+
+.formulario a{
+    text-align: left;
+    font-family: arial;
+    font-size: 20PX;
+    font-style: normal;
+    left: 50%;
+    padding: 0 0 20px 0;
+    color: white;
+}
+.formulario p{
+    text-align: left;
+    font-family: arial;
+    font-size: 20PX;
+    font-style: normal;
+    left: 50%;
+    padding: 0 0 20px 0;
+    color:  #0F0745;
+}
+.formulario form{
+    padding: 0 50px;
+    box-sizing: border-box;
+
+}
+form .nombre{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+form .DNI{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+form .correo{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+form .contraseña{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+input {
+   width: 100%;
+   padding: 0 5px;
+   height: 40px;
+   font-size: 16px;
+   color: white;
+   border: none;
+   background: none;
+   outline: none;
+}
+
+
+.nombre label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+}
+.DNI label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+ 
+.nombre span::before{
+    content:"" ;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transition: .5s;
+}
+.DNI span::before{
+    content:"" ;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transition: .5s;
+}
+.correo span::before{
+    content:"" ;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transition: .5s;
+}
+
+.nombre input:focus ~ label{
+    top: -5px;
+    color: white;
+}
+
+.nombre input:focus ~ span::before{
+    width: 100%;
+}
+
+button{
+    width: 100%;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 25px;
+    font-family: arial;
+    font-size: 18px;
+    color: white;
+    background-color: #0F0745;
+    cursor: pointer;
+    outline: none;
+}
+button:hover{
+    border-color: #0F0745;
+    transition: .5s;
+}
+
