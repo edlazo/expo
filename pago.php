@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pago Realizado</title>
+    <link rel="shortcut icon" href="visa.ico" />
 </head>
 <body>
     <style>
@@ -17,13 +18,14 @@
             font-family: Arial, Helvetica, sans-serif;
         }
         img{
-            width: 25%;
+            width: 70%;
         }
         .contenedor {
             text-align: center;
             font-style: italic;
             font-family: Arial, Helvetica, sans-serif;
-
+            font-weight: bold;
+            font-size: x-large;
         }
 
         
