@@ -13,14 +13,14 @@
 	<h1>VISA</h1>
 
 	<div class="formulario">
-	            <form method="post" action="consulta.php">
+	            <form method="post" action="pago.php">
             	<h2>REALIZAR PAGO</h2>
                 
                	<label>Marca:</label>
                 <select name="marca" id="marca" required>
                     <option value="null" selected disabled>Selecciona puesto</option>
                     <?php
-                    include "conecta2.php";
+                    include "conecta.php";
                     if (!$conexion) 
                     {
                         echo "conexión fallida";
