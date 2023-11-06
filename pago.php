@@ -18,7 +18,7 @@
             font-family: Arial, Helvetica, sans-serif;
         }
         img{
-            width: 70%;
+            width: 25%;
         }
         .contenedor {
             text-align: center;
@@ -28,65 +28,118 @@
             font-size: x-large;
         }
 
+         .buttons {
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        a{
+            width: 15vw; /* Utiliza el ancho completo de la pantalla */
+            height: 50px;
+            border: 1px solid white;
+            border-radius: 30px;
+            font-family: Arial, sans-serif;
+            font-size: 25px;
+            color: white;
+            background-color: #0F0745;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin: 0 auto;
+            padding-top: 2%; /* Espaciado vertical entre botones */
+            text-align: center;
+        }
+
+        a:hover{
+            background-color: white;
+            color: #0F0745;
+            border-color: #0F0745;
+            transition: .5s;
+        }
+        .nombre{
+            color: red;
+        }
+
         
     </style>
+   
+<?php
+if (isset($_POST['dnicon']) || isset($_POST['marca'])){
+    ?>
     <h1>Pago realizado</h1>
     <div class="contenedor">
         <img src="verify.png" alt="verify">
     </div>
     
-<div class="contenedor">
+    <div class="contenedor">
+    <?php
+    $dni = $_POST['dnicon'];
+    $saldo = $_POST['saldo'];
+    $marca = $_POST['marca'];
+    include "conecta.php"; // llama al programa que conecta con la base
+
+    if (!$conexion) {
+        echo "Conexión fallida";
+    } else {
+        echo "";
+
+        // Consulta para obtener el cuit de la tabla "marcas" basado en la marca seleccionada
+        $consulta_cuit = "SELECT cuit FROM marcas WHERE nombre = '$marca'";
+        $resultado_cuit = $conexion->query($consulta_cuit);
+        $row_cuit = $resultado_cuit->fetch_assoc();
+        $cuit = $row_cuit['cuit'];
+        $resultado_cuit->free();
+
+        // Consulta para actualizar el saldo en la tabla "personas"
+        $consulta_saldo = "UPDATE personas SET saldo = saldo - $saldo WHERE dni = '$dni'";
+        $stmt_saldo = $conexion->prepare($consulta_saldo);
+        $stmt_saldo->execute();
+        $stmt_saldo->close();
+
+        // Consulta para insertar en la tabla "comprobante"
+        $consulta_comprobante = "INSERT INTO comprobante (id_compra, dni, cuit, pago) VALUES (null, '$dni', '$cuit', $saldo)";
+        $stmt_comprobante = $conexion->prepare($consulta_comprobante);
+        $stmt_comprobante->execute();
+        $stmt_comprobante->close();
+
+        // Consulta para obtener los datos de la persona (nombre, dni, saldo) después de la actualización del saldo
+        $consulta_datos_persona = "SELECT nombre_apellido, dni, saldo FROM personas WHERE dni = '$dni'";
+        $resultado_datos_persona = $conexion->query($consulta_datos_persona);
+        $row_datos_persona = $resultado_datos_persona->fetch_assoc();
+        $nombre_apellido = $row_datos_persona['nombre_apellido'];
+        $dni_persona = $row_datos_persona['dni'];
+        $saldo_persona = $row_datos_persona['saldo'];
+
+        // Muestra los datos de la persona
+        echo "Nombre y Apellido: " . $nombre_apellido . "<br>";
+        echo "DNI: " . $dni_persona . "<br>";
+        echo "<span class='nombre'>Saldo actualizado: \$" . $saldo_persona . "</span><br>";
+
+        // Cierra la conexión con la base de datos
+        $conexion->close();
+    }
+
+    }
+else
+    ?>
+    <h1>Error en la consulta</h1>
+    <div class="contenedor">
+        <img src="error.png" alt="error">
+    </div>
+    
+    <div class="contenedor">
 <?php
-$dni = $_POST['dnicon'];
-$saldo = $_POST['saldo'];
-$marca = $_POST['marca'];
-include "conecta.php"; // llama al programa que conecta con la base
-
-if (!$conexion) {
-    echo "Conexión fallida";
-} else {
-    echo "";
-    echo "<br>";
-    echo "<br>";
-
-    // Consulta para obtener el CUIL de la tabla "marcas" basado en la marca seleccionada
-    $consulta_cuil = "SELECT cuil FROM marcas WHERE nombre = '$marca'";
-    $resultado_cuil = $conexion->query($consulta_cuil);
-    $row_cuil = $resultado_cuil->fetch_assoc();
-    $cuil = $row_cuil['cuil'];
-    $resultado_cuil->free();
-
-    // Consulta para actualizar el saldo en la tabla "personas"
-    $consulta_saldo = "UPDATE personas SET saldo = saldo - $saldo WHERE dni = '$dni'";
-    $stmt_saldo = $conexion->prepare($consulta_saldo);
-    $stmt_saldo->execute();
-    $stmt_saldo->close();
-
-    // Consulta para insertar en la tabla "comprobante"
-    $consulta_comprobante = "INSERT INTO comprobante (id_compra, dni, cuil, pago) VALUES (null, '$dni', '$cuil', $saldo)";
-    $stmt_comprobante = $conexion->prepare($consulta_comprobante);
-    $stmt_comprobante->execute();
-    $stmt_comprobante->close();
-
-    // Consulta para obtener los datos de la persona (nombre, dni, saldo) después de la actualización del saldo
-    $consulta_datos_persona = "SELECT nombre_apellido, dni, saldo FROM personas WHERE dni = '$dni'";
-    $resultado_datos_persona = $conexion->query($consulta_datos_persona);
-    $row_datos_persona = $resultado_datos_persona->fetch_assoc();
-    $nombre_apellido = $row_datos_persona['nombre_apellido'];
-    $dni_persona = $row_datos_persona['dni'];
-    $saldo_persona = $row_datos_persona['saldo'];
-
-    // Muestra los datos de la persona
-    echo "Nombre y Apellido: " . $nombre_apellido . "<br>";
-    echo "DNI: " . $dni_persona . "<br>";
-    echo "Saldo actualizado: " . $saldo_persona . "<br>";
-
-    // Cierra la conexión con la base de datos
-    $conexion->close();
-}
+    echo "No ha seleccionado una marca o DNI adecuados<br>";
 ?>
 
+<br>    
+<div class="buttons">
+    <a href="index.html">Volver al inicio</a>
+</div>
 
 </div>
+
 </body>
 </html>

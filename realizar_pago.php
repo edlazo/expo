@@ -58,27 +58,57 @@
 
             <br>
 
-
-
             <div class="Dinero">
                 <label class="espacio">Ingresar monto</label>
                 <input type="text" placeholder="Dinero a descontar" name="saldo" required>
             </div>
 
+            <br>
 
+            <label>DNI:</label>
+            <select name="dnicon" id="dnicon" required>
+                <option value="null" selected disabled>Selecciona DNI</option>
+                <?php
+                include "conecta.php";
+                if (!$conexion) {
+                    echo "conexión fallida";
+                } else {          
+                    $sql = "SELECT dni FROM personas";
+                    $result = $conexion->query($sql);
 
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . $row['dni'] . '">' . $row['dni'] . '</option>';
+                        }
+                    } else {
+                        echo '<option value="">No se encontraron personas</option>';
+                    }
+                }
+                // Cierra la conexión a la base de datos
+                $conexion->close();
+                ?>
+            </select>
 
-            <div class="DNI">
+            <br>
+            <br>
+<!--
+          <div class="DNI">
                 <label class="espacio">Ingresar DNI</label>
                 <input type="text" placeholder="Dni" name="dnicon" required>
             </div>
-
+-->
             <center><button center type="submit">CONFIRMAR PAGO</center>
             <br>
-            <br>
-            <br>
+            <div class="buttons">
+                <a class="boton" href="index.html">Volver al inicio</a>
+            </div>
         </form>
+
+        
     </div>
+
+    <br>    
+        
 </body>
 
 </html>
