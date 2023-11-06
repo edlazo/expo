@@ -1,0 +1,22 @@
+Mejoras y sugerencias:
+
+* El saldo inicial es de $100000 (ARREGLADO).
+
+* Verificar que el DNI de la persona exista en la base de datos al momento de realizar el pago. Tambien se puede verificar al registrarlo (para evitar duplicaciones).
+
+* Controlar que el saldo no llegue a 0 al realizar las compras. Por ejemplo: si le queda $200 y quiere realizar una compra de $300 que le informe que no tiene saldo disponible. O para hacerlo mas facil, si el saldo es cero o negativo, que le informe que no puede realizar mas compras.
+
+* Agregar un visor de saldo al inicio de la pagina.
+
+* Sacar el telefono del registro de las personas y como dato en la base de datos.
+
+* Fijar la IP para el servidor (por ejemplo: 192.168.1.100) y crear un link abreviado + QR. Esto se va a poder hacer solo con el servidor a mano y un router un dia antes de la expo.
+
+* Una vez que esten todos los links con IP fija al servidor, se haran los QR de la pagina de inicio, el registro y el pago (en lo posible uno por empresa)
+
+* Pedir 2 PCs mas para la expo. Uno para complementar al servidor en el stand de VISA y otro para exponer en el auditorio junto con los otros proyectos de informatica.
+
+* Realizar un listado agrupado por CUIT con los totales de las compras (para despues de la expo).
+
+
+http://192.168.100.132/expo2/index.html
