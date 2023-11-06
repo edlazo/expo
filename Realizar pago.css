@@ -146,6 +146,8 @@ button{
     outline: none;
 }
 button:hover{
+    background-color: white;
+    color: #0F0745;
     border-color: #0F0745;
     transition: .5s;
 }
@@ -164,3 +166,35 @@ button:hover{
     outline: none;
 }
 
+.buttons {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+a.boton {
+    width: 100%; /* Utiliza el ancho completo de la pantalla */
+    height: 20px;
+    border: 1px solid white;
+    border-radius: 25px;
+    font-family: arial;
+    font-size: 20px;
+    color: white;
+    background-color: #0F0745;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 10px;
+    padding-top: 3%; /* Espaciado vertical entre botones */
+}
+
+a.boton:hover{
+    background-color: white;
+    color: #0F0745;
+    border-color: #0F0745;
+    transition: .5s;
+}
+
+.nombre{
+    color: red;
+}
