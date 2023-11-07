@@ -66,15 +66,7 @@
     </style>
    
 <?php
-if (isset($_POST['dnicon']) || isset($_POST['marca'])){
-    ?>
-    <h1>Pago realizado</h1>
-    <div class="contenedor">
-        <img src="verify.png" alt="verify">
-    </div>
-    
-    <div class="contenedor">
-    <?php
+if (isset($_POST['dnicon']) && isset($_POST['marca']) && isset($_POST['saldo'])) {
     $dni = $_POST['dnicon'];
     $saldo = $_POST['saldo'];
     $marca = $_POST['marca'];
@@ -85,60 +77,69 @@ if (isset($_POST['dnicon']) || isset($_POST['marca'])){
     } else {
         echo "";
 
-        // Consulta para obtener el cuit de la tabla "marcas" basado en la marca seleccionada
-        $consulta_cuit = "SELECT cuit FROM marcas WHERE nombre = '$marca'";
-        $resultado_cuit = $conexion->query($consulta_cuit);
-        $row_cuit = $resultado_cuit->fetch_assoc();
-        $cuit = $row_cuit['cuit'];
-        $resultado_cuit->free();
 
-        // Consulta para actualizar el saldo en la tabla "personas"
-        $consulta_saldo = "UPDATE personas SET saldo = saldo - $saldo WHERE dni = '$dni'";
-        $stmt_saldo = $conexion->prepare($consulta_saldo);
-        $stmt_saldo->execute();
-        $stmt_saldo->close();
+        $resultado_saldo = $conexion->query("SELECT saldo FROM personas WHERE dni = '$dni'");
+        $row_saldo = $resultado_saldo->fetch_assoc();
+        $persona_saldo = $row_saldo['saldo'];
+        $resultado_saldo->free();
 
-        // Consulta para insertar en la tabla "comprobante"
-        $consulta_comprobante = "INSERT INTO comprobante (id_compra, dni, cuit, pago) VALUES (null, '$dni', '$cuit', $saldo)";
-        $stmt_comprobante = $conexion->prepare($consulta_comprobante);
-        $stmt_comprobante->execute();
-        $stmt_comprobante->close();
+        if($persona_saldo >= $saldo) {
 
-        // Consulta para obtener los datos de la persona (nombre, dni, saldo) después de la actualización del saldo
-        $consulta_datos_persona = "SELECT nombre_apellido, dni, saldo FROM personas WHERE dni = '$dni'";
-        $resultado_datos_persona = $conexion->query($consulta_datos_persona);
-        $row_datos_persona = $resultado_datos_persona->fetch_assoc();
-        $nombre_apellido = $row_datos_persona['nombre_apellido'];
-        $dni_persona = $row_datos_persona['dni'];
-        $saldo_persona = $row_datos_persona['saldo'];
+            // Consulta para obtener el cuit de la tabla "marcas" basado en la marca seleccionada
+            $consulta_cuit = "SELECT cuit FROM marcas WHERE nombre = '$marca'";
+            $resultado_cuit = $conexion->query($consulta_cuit);
+            $row_cuit = $resultado_cuit->fetch_assoc();
+            $cuit = $row_cuit['cuit'];
+            $resultado_cuit->free();
 
-        // Muestra los datos de la persona
-        echo "Nombre y Apellido: " . $nombre_apellido . "<br>";
-        echo "DNI: " . $dni_persona . "<br>";
-        echo "<span class='nombre'>Saldo actualizado: \$" . $saldo_persona . "</span><br>";
+            // Consulta para actualizar el saldo en la tabla "personas"
+            $actualiza_saldo = "UPDATE personas SET saldo = saldo - $saldo WHERE dni = '$dni'";
+            $stmt_saldo = $conexion->prepare($actualiza_saldo);
+            $stmt_saldo->execute();
+            $stmt_saldo->close();
 
-        // Cierra la conexión con la base de datos
+            // Consulta para insertar en la tabla "comprobante"
+            $consulta_comprobante = "INSERT INTO comprobante (id_compra, dni, cuit, pago) VALUES (null, '$dni', '$cuit', $saldo)";
+            $stmt_comprobante = $conexion->prepare($consulta_comprobante);
+            $stmt_comprobante->execute();
+            $stmt_comprobante->close();
+
+            // Consulta para obtener los datos de la persona (nombre, dni, saldo) después de la actualización del saldo
+            $consulta_datos_persona = "SELECT nombre_apellido, dni, saldo FROM personas WHERE dni = '$dni'";
+            $resultado_datos_persona = $conexion->query($consulta_datos_persona);
+            $row_datos_persona = $resultado_datos_persona->fetch_assoc();
+            $nombre_apellido = $row_datos_persona['nombre_apellido'];
+            $dni_persona = $row_datos_persona['dni'];
+            $saldo_persona = $row_datos_persona['saldo'];
+
+            // Muestra los datos de la persona
+            echo "<h1>Pago realizado</h1>";
+            echo "<div class='contenedor'><img src='verify.png' alt='verify'></div>";
+            echo "<div class='contenedor'>";
+            echo "Nombre y Apellido: " . $nombre_apellido . "<br>";
+            echo "DNI: " . $dni_persona . "<br>";
+            echo "<span class='nombre'>Saldo actualizado: \$" . $saldo_persona . "</span><br>";
+            echo "</div>";
+
+        } else {
+            echo "<h1>Error: Saldo insuficiente</h1>";
+            echo "<div class='contenedor'><img src='error.png' alt='error'></div>";
+            echo "<div class='contenedor'>El saldo de la persona es insuficiente para realizar la transacción.</div>";
+        }
+        
         $conexion->close();
     }
 
     }
-else{
-    ?>
-    <h1>Error en la consulta</h1>
-    <div class="contenedor">
-        <img src="error.png" alt="error">
-    </div>
-    
-    <div class="contenedor">
-<?php
+    else {
+    echo "<h1>Error en la consulta</h1>";
+    echo "<div class='contenedor'><img src='error.png' alt='error'></div>";
+    echo "<div class='contenedor'>";
     echo "No ha seleccionado una marca o DNI adecuados<br>";
-}
-?>
-<br>
-<div class="buttons">
-    <a class="boton" href="realizar_pago.php">Realizar otro pago</a>
-</div>
+    }
 
+
+?>
 
 <br>    
 <div class="buttons">
