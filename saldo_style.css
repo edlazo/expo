@@ -1,0 +1,89 @@
+body {
+	background-color: #0F0745;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+h1 {
+	margin: 0;
+	color: white;
+	font-size: 45px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-style: italic;
+	padding-top: 2%;
+	padding-bottom: 4%;
+}
+
+h2 {
+	margin: 0;
+	color: white;
+	font-size: 35px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-style: italic;
+	padding-bottom: 5%;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+a {
+	width: 20vw; /* Utiliza el ancho completo de la pantalla */
+	height: 60px;
+	border: 1px solid white;
+	border-radius: 30px;
+	font-family: Arial, sans-serif;
+	font-size: 30px;
+	color: white;
+	background-color: #0F0745;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	margin: 0 10px;
+    padding-top: 3%; /* Espaciado vertical entre botones */
+}
+
+a:hover{
+    background-color: white;
+	color: #0F0745;
+    border-color: #0F0745;
+    transition: .5s;
+}
+
+img{
+    width: 50%;
+}
+
+.contenedor {
+    text-align: center;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+label {
+	text-align: center;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+label , p{
+    text-align: center;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+    color: white; /* Añadido para el color blanco */
+}
