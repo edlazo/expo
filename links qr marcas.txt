@@ -1,0 +1,3 @@
+localhost/expo/realizar_pago.php?marca_qr=Juguetinton S. C.
+
+localhost/expo/realizar_pago.php?marca_qr=Eclipse S.C.

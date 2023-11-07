@@ -18,34 +18,47 @@
         $(document).ready(function() {
             // Inicializa Select2 en tu elemento select con el id "marca"
             $('#marca').select2();
+            // Inicializa Select2 en tu elemento select con el id "marca"
+            $('#dnicon').select2();
         });
     </script>
-    <br>
-    <br>
+    <div class="contenedor">
+        <img src="visa.ico" alt="visa">
+    </div>
     <h1>VISA</h1>
-
     <div class="formulario">
         <form method="post" action="pago.php">
             <h2>REALIZAR PAGO</h2>
-
             <label>Marca:</label>
             <select name="marca" id="marca" required>
-                <option value="null" selected disabled>Selecciona puesto</option>
+                            
                 <?php
                 include "conecta.php";
                 if (!$conexion) {
                     echo "conexión fallida";
                 } else {
-                    echo "conexion exitosa!";
-                    echo ' <br/>';
-                    echo "INSERCIÓN DE REGISTROS" . "<br/>";
-
                     $sql = "SELECT nombre FROM marcas";
                     $result = $conexion->query($sql);
+ 
+                    if (isset($_GET['marca_qr'])){
+                        $seleccionado = $_GET['marca_qr'];
+
+                        /*
+                        echo "<option value='" . $_GET['marca_qr'] . "' selected disabled>" . $_GET['marca_qr'] . "</option>";
+                        echo "<option value='null'>Selecciona puesto</option>";
+                        */
+                    }
+                    else{
+                        $seleccionado = 'null';
+                        echo "<option value='null' selected disabled>Selecciona puesto</option>";
+                    }   
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            echo '<option value="' . $row['nombre'] . '">' . $row['nombre'] . '</option>';
+                            if ($row['nombre'] == $seleccionado)
+                                echo "<option value='" . $row['nombre'] .  "' selected>" . $row['nombre'];
+                            else
+                                echo '<option value="' . $row['nombre'] . '">' . $row['nombre'] . '</option>';                            
                         }
                     } else {
                         echo '<option value="">No se encontraron marcas</option>';

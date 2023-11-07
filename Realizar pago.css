@@ -2,21 +2,18 @@ body{
     background-color: #0F0745;
 }
 
-    H1{
-        margin: 0;
-        color: white;
-        font-size: 45px;
-        text-align: center;
-        font-family: arial;
-        font-style: italic;
-
+H1{
+    margin: 0;
+    color: white;
+    font-size: 45px;
+    text-align: center;
+    font-family: arial;
+    font-style: italic;
 }
-
-
 
 .formulario{
     position: absolute;
-    top:60%;
+    top:55%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
@@ -197,4 +194,16 @@ a.boton:hover{
 
 .nombre{
     color: red;
+}
+
+img{
+    width: 8%;
+}
+
+.contenedor {
+    text-align: center;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
 }
