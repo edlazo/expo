@@ -27,7 +27,7 @@ h2 {
 	text-align: center;
 	font-family: Arial, sans-serif;
 	font-style: italic;
-	padding-bottom: 10%;
+	padding-bottom: 5%;
 }
 
 .buttons {
@@ -37,19 +37,38 @@ h2 {
 }
 
 a {
-	width: 40vw; /* Utiliza el ancho completo de la pantalla */
-	height: 40px;
+	width: 20vw; /* Utiliza el ancho completo de la pantalla */
+	height: 60px;
 	border: 1px solid white;
 	border-radius: 30px;
 	font-family: Arial, sans-serif;
-	font-size: 18px;
+	font-size: 30px;
 	color: white;
 	background-color: #0F0745;
 	cursor: pointer;
 	text-align: center;
 	text-decoration: none;
 	margin: 0 10px;
-    padding-top: 5%; /* Espaciado vertical entre botones */
+    padding-top: 3%; /* Espaciado vertical entre botones */
+}
+
+a:hover{
+    background-color: white;
+	color: #0F0745;
+    border-color: #0F0745;
+    transition: .5s;
+}
+
+img{
+    width: 50%;
+}
+
+.contenedor {
+    text-align: center;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 
