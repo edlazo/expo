@@ -122,7 +122,7 @@ if (isset($_POST['dnicon']) || isset($_POST['marca'])){
     }
 
     }
-else
+else{
     ?>
     <h1>Error en la consulta</h1>
     <div class="contenedor">
@@ -132,7 +132,13 @@ else
     <div class="contenedor">
 <?php
     echo "No ha seleccionado una marca o DNI adecuados<br>";
+}
 ?>
+<br>
+<div class="buttons">
+    <a class="boton" href="realizar_pago.php">Realizar otro pago</a>
+</div>
+
 
 <br>    
 <div class="buttons">

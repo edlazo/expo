@@ -1,14 +1,16 @@
 Mejoras y sugerencias:
 
-* El saldo inicial es de $100000 (ARREGLADO).
+* El saldo inicial es de $100000 (SOLUCIONADO).
 
-* Verificar que el DNI de la persona exista en la base de datos al momento de realizar el pago. Tambien se puede verificar al registrarlo (para evitar duplicaciones).
+* Verificar que el DNI de la persona exista en la base de datos al momento de realizar el pago. Tambien se puede verificar al registrarlo (para evitar duplicaciones). (SOLUCIONADO, carga una lista con los dnis)
+
+* Seleccionar una marca para diferentes links por QR o URL (SOLUCIONADO)
+
+* Sacar el telefono del registro de las personas y como dato en la base de datos. (SOLUCIONADO)
 
 * Controlar que el saldo no llegue a 0 al realizar las compras. Por ejemplo: si le queda $200 y quiere realizar una compra de $300 que le informe que no tiene saldo disponible. O para hacerlo mas facil, si el saldo es cero o negativo, que le informe que no puede realizar mas compras.
 
 * Agregar un visor de saldo al inicio de la pagina.
-
-* Sacar el telefono del registro de las personas y como dato en la base de datos.
 
 * Fijar la IP para el servidor (por ejemplo: 192.168.1.100) y crear un link abreviado + QR. Esto se va a poder hacer solo con el servidor a mano y un router un dia antes de la expo.
 
@@ -20,3 +22,10 @@ Mejoras y sugerencias:
 
 
 http://192.168.100.132/expo2/index.html
+
+github 6/11/23
+
+* Se agrego un botón de visor de saldo y se cambio el estilos de los botones. Aparte de la imagen de portada.
+* Se agregaron hipervínculos para volver al inicio o cancelar las diferentes operaciones.
+* Al realizar un pago se verifica que este seleccionado una marca y el dni.
+* Al realizar un pago se carga una lista de DNI.
