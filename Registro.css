@@ -212,3 +212,44 @@ img{
     font-size: x-large;
     font-weight: bold;
 }
+
+/* Estilos para pantallas más pequeñas (menos de 768px de ancho) */
+@media (max-width: 768px) {
+    .formulario {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .formulario h2, .formulario a {
+        font-size: 20px;
+    }
+
+    .nombre input, .DNI input, .correo input {
+        height: 35px;
+        font-size: 14px;
+    }
+
+    a.boton {
+        font-size: 18px;
+    }
+}
+
+/* Estilos para pantallas más pequeñas (menos de 480px de ancho) */
+@media (max-width: 480px) {
+    .formulario {
+        padding: 10px;
+    }
+
+    .formulario h2, .formulario a {
+        font-size: 18px;
+    }
+
+    .nombre input, .DNI input, .correo input {
+        height: 30px;
+        font-size: 14px;
+    }
+
+    a.boton {
+        font-size: 16px;
+    }
+}

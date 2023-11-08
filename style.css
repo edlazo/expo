@@ -34,10 +34,13 @@ h2 {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: center; /* Agrega esto para centrar los enlaces horizontalmente */
+	flex-wrap: wrap; /* Permite que los enlaces se envuelvan a una nueva línea cuando no haya suficiente espacio en la pantalla */
 }
 
 a {
-	width: 20vw; /* Utiliza el ancho completo de la pantalla */
+	flex: 1; /* Distribuye el espacio disponible de manera uniforme entre los enlaces */
+	max-width: 200px; /* Establece un ancho máximo para los enlaces para que no se vuelvan demasiado anchos en pantallas grandes */
 	height: 60px;
 	border: 1px solid white;
 	border-radius: 30px;
@@ -48,9 +51,10 @@ a {
 	cursor: pointer;
 	text-align: center;
 	text-decoration: none;
-	margin: 0 10px;
-    padding-top: 3%; /* Espaciado vertical entre botones */
+	margin: 10px; /* Espaciado en todos los lados de los enlaces */
+	padding: 10px; /* Espaciado interno para hacer que los enlaces sean más grandes y fáciles de tocar en dispositivos móviles */
 }
+
 
 a:hover{
     background-color: white;
@@ -71,4 +75,8 @@ img{
     font-weight: bold;
 }
 
-
+@media (max-width: 768px) {
+	a {
+	  max-width: 100%; /* En pantallas pequeñas, los enlaces ocuparán el 100% del ancho disponible */
+	}
+  }
