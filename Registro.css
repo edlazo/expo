@@ -213,7 +213,6 @@ img{
     font-weight: bold;
 }
 
-/* Estilos para pantallas más pequeñas (menos de 768px de ancho) */
 @media (max-width: 768px) {
     .formulario {
         width: 90%;
@@ -234,7 +233,6 @@ img{
     }
 }
 
-/* Estilos para pantallas más pequeñas (menos de 480px de ancho) */
 @media (max-width: 480px) {
     .formulario {
         padding: 10px;
